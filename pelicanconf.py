@@ -100,6 +100,7 @@ OUTPUT_PATH = 'output'
 PATH = 'content'
 
 STATIC_PATHS = [\
+    'README.md',
     'blog',
     'static/img',
     'static/css',
