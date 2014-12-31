@@ -1,0 +1,23 @@
+<div class="panel-group" id="accordion">
+  {% for fp in article_files %}
+  {% set a = include_articles[fp] %}
+  <div class="panel panel-default">
+      <button class="panel-heading" data-toggle="collapse" data-parent="#accordian" data-target="#collapse{{ loop.index }}">  
+        <div class="panel-title">
+          <img src="{{ SITEURL }}/{{ a.image }}" alt="{{ a.image_alt }}"/> 
+          <h4>
+            {{ a.title}}
+          </h4>
+        </div>
+      </button>
+  </div>
+
+  <div id="collapse{{ loop.index }}" class="panel-collapse collapse in" data-parent="#accordian">
+    <div class="panel-body">
+      {{ a.content }}
+    </div>
+  </div>
+
+  {% endfor %}
+</div>
+

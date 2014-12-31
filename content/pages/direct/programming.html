@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block title %}Dylan's Code{% endblock %}
+
+{% block content %}
+
+<h1>Programming</h1>
+
+<p>
+Python all the things. I've been coding Python for the past 4 years to analyze large astronomy data sets. In addition, I've learn Fortran, some C and shell scripting. 
+</p>
+
+<p>
+My github handle in {% if GITHUB_URL %}<a href="{{ GITHUB_URL }}">astrodsg           
+<i class="fa fa-github fa-lg"></i></a>{% else %}astrodsg{% endif %}
+</p>
+
+{% set article_files = PROGRAMMING_ARTICLES %}
+{% include '_page_articles.html' %}
+{% endblock %}
+
+{% block javascript %}
+{{ super() }}
+<script>
+$(".panel-collapse").collapse('hide');
+// $(document).ready(function(){
+//     $(".panel-collapse").collapse('hide');
+// )};
+</script>
+{% endblock %}

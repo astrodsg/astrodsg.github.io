@@ -1,0 +1,10 @@
+{% block javascript %}
+{{ super() }}
+<script>
+$(document).ready() {
+    $(".panel-collapse").collapse('hide');
+}
+</script>
+
+
+{% endblock %}

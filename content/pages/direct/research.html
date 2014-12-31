@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block title %}Dylan's Research{% endblock %}
+
+
+{% block content %}
+
+<h1>Astronomy Research</h1>
+
+<p>
+I am interested in galaxy formation and evolution, stellar populations, star clusters, and galaxy dynamics.
+Our knowledge of the Universe is growing but there still are unanswered questions that drive science forward. 
+I enjoy working at the interface of astronomy and computation. In this age of large data sets such as the Sloan Digital Sky Survey, the ability to process data using computers is vital.        
+</p>
+
+{% set article_files = RESEARCH_ARTICLES %}
+{% include '_page_articles.html' %}
+{% endblock %}
+
+{% block javascript %}
+{{ super() }}
+<script>
+$(".panel-collapse").collapse('hide');
+// $(document).ready(function(){
+//     $(".panel-collapse").collapse('hide');
+// )};
+</script>
+{% endblock %}
