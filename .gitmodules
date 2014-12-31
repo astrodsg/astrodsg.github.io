@@ -1,0 +1,6 @@
+[submodule "plugins/multi_neighbors"]
+	path = plugins/multi_neighbors
+	url = https://github.com/davidlesieur/multi_neighbors
+[submodule "plugins/pandoc_reader"]
+	path = plugins/pandoc_reader
+	url = https://github.com/astrodsg/pandoc_reader
