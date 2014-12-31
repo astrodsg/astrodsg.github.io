@@ -1,0 +1,29 @@
+/* Theme : solarize.css
+ *
+ */
+
+pre {
+    background-color: #FDF6E3
+}
+/*  KeyWordTok */
+code.sourceCode .kw { color: #268BD2; }
+/*  DataTypeTok */
+code.sourceCode .dt { color: #268BD2; }
+/*  DecValTok (decimal value), BaseNTok, FloatTok */
+code.sourceCode .dv, .sourceCode .bn, .sourceCode .fl { color: #D33682; }
+/*  CharTok */
+code.sourceCode .ch { color: #DC322F; }
+/*  StringTok */
+code.sourceCode .st { color: #2AA198; }
+/*  CommentTok */
+code.sourceCode .co { color: #93A1A1; }
+/*  OtherTok */
+code.sourceCode .ot { color: #A57800; }
+/*  AlertTok */
+code.sourceCode .al { color: #CB4B16; font-weight: bold; }
+/*  FunctionTok */
+code.sourceCode .fu { color: #268BD2; }
+/*  RegionMarkerTok */
+code.sourceCode .re { }
+/*  ErrorTok */
+code.sourceCode .er { color: #D30102; font-weight: bold; }
