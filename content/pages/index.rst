@@ -24,7 +24,7 @@ Isn't the internet amazing! This part is just about me. I currently work at the 
 `Research </research.html>`_
 	All about my astronomy research. Related to stellar populations both in our own galaxy and in the Andromeda Galaxy.
 
-`Projects <{/programming.html>`_
+`Projects </programming.html>`_
 	My programming adventures 
 
 `Contact Me </contact.html>`_
