@@ -1,0 +1,25 @@
+# Configuration Files #
+#######################
+publishconf.py
+todo
+
+# Python #
+##########
+*.pyc
+*.pid
+
+# Pelican Build #
+#################
+output
+cache
+__pycache__
+
+# Plugins #
+###########
+
+# Themes # 
+##########
+#themes/pelican-octopress-theme
+#themes/waterspill-en
+#themes/pelican-elegant
+themes
