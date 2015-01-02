@@ -1,3 +1,4 @@
 ipython==2.3.1
 pelican==3.5.0
 pandocfilters >= 1.2.3
+ghp-import==0.4.1
