@@ -1,0 +1,60 @@
+{% extends '_base.html' %}
+
+{% block title %}
+Page not found · {{ super() }}
+{% endblock title %}
+
+{% block navbar %}
+{% endblock %}
+
+{% block head_css %}
+{{ super() }}
+<link href="{{ SITEURL }}/static/css/wheres_waldo.css" rel="stylesheet">
+{% endblock %}
+
+{% block main_content %}
+<div class="wheres_waldo">
+  <img alt="Where's Your Page" src="{{ SITEURL }}/static/img/whereswaldo.jpg">
+
+  <a class="found" href="{{ SITEURL }}/">You Found Waldo!</a>
+
+
+
+
+
+
+
+
+
+
+  <div class="main-background">
+    <div class="main">
+
+    <div class="row-fluid">
+      <header class="page-header span10 offset2">
+        <h1>That page doesn't exist!</h1>
+      </header>
+    </div>
+    <div class="row-fluid">
+      <div class="span8 offset2">
+        <p>Ok sorry, but the page you are looking for cannot be found. It seems that the page you were trying to reach doesn't exist, or may be it has just moved, or it no longer exists.</p>
+        <p>The best thing to do is to use the search form or start again from the <a href="{{ SITEURL }}/">home page</a>.</p>
+        <div class="input-append">
+          <form action="{{ SITEURL }}/search.html" onsubmit="return validateForm(this.elements['q'].value)">
+            <input type="text" class="span12" placeholder="Search" name="q" id="tipue_search_input_404">
+            <button class="btn" type="submit">Search</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+
+
+
+</div>
+{% endblock main_content %}
+
+{% block include_html %}
+{% include "_includes/analytics.html" %}
+{% endblock %}
