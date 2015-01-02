@@ -18,40 +18,26 @@ Page not found · {{ super() }}
 
   <a class="found" href="{{ SITEURL }}/">You Found Waldo!</a>
 
-
-
-
-
-
-
-
-
-
   <div class="main-background">
     <div class="main">
 
-    <div class="row-fluid">
-      <header class="page-header span10 offset2">
-        <h1>That page doesn't exist!</h1>
-      </header>
-    </div>
-    <div class="row-fluid">
-      <div class="span8 offset2">
-        <p>Ok sorry, but the page you are looking for cannot be found. It seems that the page you were trying to reach doesn't exist, or may be it has just moved, or it no longer exists.</p>
-        <p>The best thing to do is to use the search form or start again from the <a href="{{ SITEURL }}/">home page</a>.</p>
-        <div class="input-append">
-          <form action="{{ SITEURL }}/search.html" onsubmit="return validateForm(this.elements['q'].value)">
-            <input type="text" class="span12" placeholder="Search" name="q" id="tipue_search_input_404">
-            <button class="btn" type="submit">Search</button>
-          </form>
+      <div class="row-fluid">
+        <header class="page-header span10 offset2">
+          <h1>Can you find the right webpage?</h1>
+        </header>
+      </div>
+      <div class="row-fluid">
+        <div class="span8 offset2">
+          <p>
+            The page you are searching for has disapeared. You are now on a fantastic adventure! I will send you along with this advice: click back to return to your previous page or click <a href="{{ SITEURL }}/">here to return to Dylan's home page</a>.
+          </p>
+            <!-- <form action="{{ SITEURL }}/search.html" onsubmit="return validateForm(this.elements['q'].value)"> -->
+            <!-- <input type="text" class="span12" placeholder="Search" name="q" id="tipue_search_input_404"> -->
+            <!-- <button class="btn" type="submit">Search</button> </form> -->
         </div>
       </div>
     </div>
   </div>
-  </div>
-
-
-
 </div>
 {% endblock main_content %}
 
