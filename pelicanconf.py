@@ -101,6 +101,7 @@ PATH = 'content'
 
 STATIC_PATHS = [\
     'README.md',
+    'favicon.ico',
     'blog',
     'static/img',
     'static/css',
