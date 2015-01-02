@@ -101,6 +101,7 @@ PATH = 'content'
 
 STATIC_PATHS = [\
     'README.md',
+    'extra/icons',
     'favicon.ico',
     'blog',
     'static/img',
@@ -117,6 +118,8 @@ INCLUDE_JS="static/js"
 PAGE_PATHS = ['pages']
 DIRECT_PAGE_TEMPLATES = 'pages/direct'
 PAGE_EXCLUDES = [DIRECT_PAGE_TEMPLATES]
+
+FAVICON_PATH = "extra/icons"
 
 # ----------------------- 
 
@@ -167,6 +170,7 @@ EXTRA_TEMPLATES_PATHS = [\
 
 DIRECT_TEMPLATES = [\
     # "name" -> `/name.html` unless NAME_SAVE_AS=
+    "404",
     "research", 
     "programming",
     "adventures",
