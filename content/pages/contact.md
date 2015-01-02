@@ -5,14 +5,8 @@ save_as: contact.html
 template: contact
 name: contact
 
-I would love to hear from you.
-[Send me and email](mailto:%67%72%65%67%65%72%73%65%6e%2e%64%79%6c%61%6e@%67%6d%61%69%6c.%63%6f%6d").
-
-<br/>
-<br/>
-
+<br>
 Astronomy related mail can reach me using the following:
-
 <br/>
 
 ------------------------------------------------------------
