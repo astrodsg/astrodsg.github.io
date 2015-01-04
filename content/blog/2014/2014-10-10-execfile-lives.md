@@ -27,13 +27,11 @@ execfile("file1.py")
 
 *THIS IS BAD!* Primarily because you have no idea what variables in "file1.py" are now in the current namespace. It makes it hard to read and debug. 
 
-To include extra code correctly you should locate "file1.py" into your PYTHONPATH and use `imp.reload` if you want to interactively update data from the file.
+To include extra code correctly you should locate "file1.py" into your PYTHONPATH and use `import file1` to access all the variables. You can use `imp.reload` if you want to interactively update data from the file
 
-## Deprecating `execfile` was Bad
+## Deprecating `execfile` was Bad and how to Resurrect
 
-Entirely for interactively use. For my research, I primarily use Python as an interactive shell to type in the commands I want executed then dynamically investigate the results. To expedite this process, I write scripts that are never meant to be imported but run in the primary namespace and give me dynamic access to its variables. 
-
-## Resurrecting `execfile` in Python 3
+__Entirely for interactively use.__ For my research, I primarily use Python as an interactive shell to type in the commands I want executed then dynamically investigate the results. I explicitly type `execfile` onto the command line so that it will be executed in the interpretor and all the variables will be in the main namespace. Then I can segment parts of the script to put into other scripts which I can import.
 
 A few different methods have been discussed on other blogs. The ones I found lead me on the right track but required a few modifications. The method below was what finally worked for me. I've included it in my PYTHONSTARTUP file with a conditional checking `sys.version[0] == "3"`.
 
@@ -53,5 +51,6 @@ def execfile(filepath,  globals=None, locals=None):
 ```
 
 Hope this helps!
+
 
 
