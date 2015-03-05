@@ -1,7 +1,7 @@
 title: Supermongo to Python
 date: Sat Oct 25 19:05:59 MDT 2014
 authors: Dylan Gregersen
-status: draft
+status: published
 comments: true
 template: article
 css: static/css/supermongo-to-python.css
@@ -19,7 +19,7 @@ Supermongo (SM) is a domain-specific programming language for creating plots. It
 
 Matplotlib is a domain-specific plotting library for the general-purpose programming language Python. This library provides all the plotting capabilities of Supermongo and more. This post is to provide a 1-to-1 guide for Supermongo experts to apply their knowledge in Python with Matplotlib.
 
-Other Python plotting packages include : bokeh, vispy,
+Other Python plotting packages include : bokeh, plotly, vispy
 
 <!-- __TODO: outline__
 
@@ -53,9 +53,13 @@ Because general purpose language you'll need specific subpackages. For this tuto
 Hopefully, these packages came with your installation of Python. You can also install them using the command line utility `pip` (e.g. `pip install numpy`)
 This tutorial will work with both Python 2 and 3. 
 
+<br/>
+<br/>
+<br/>
+
 ------------------------------------------------------
 
-## Getting Started With Supermongo-Python ##
+## Getting Started ##
 
 ### Working interactively ###
 
@@ -76,7 +80,7 @@ Here's a side by side comparison of interactive mode.
 
 +--------------------+------------------------------------+
 |     Supermongo     |               Python               |
-+--------------------+------------------------------------+
++====================+====================================+
 | ```supermongo      | ```python                          |
 | div X11            | from matplotlib.pylab import *     |
 | set x = {2,3}      | x = [2,3]                          |
@@ -92,7 +96,7 @@ __NOTE:__ The remainder of the tutorial I don't use `from matplotlib.pylab impor
 
 ### Writing Scripts ###
 
-Both languages allow you to write a script to execute commands. If you're not doing this you really should. Basically you just write the lines you would type into the interactive mode into a text file and then execute that file. You will want to use [Emacs](https://www.gnu.org/software/emacs/), [Sublime Text](http://www.sublimetext.com/), [TextWrangler](http://www.barebones.com/products/textwrangler/) or some equivalent text editor.
+Both languages allow you to write a script to execute commands. If you're not doing this you really should. In a nut shell, you just write the lines you would type into the interactive mode into a text file and then execute that file. You will want to use [Emacs](https://www.gnu.org/software/emacs/), [Sublime Text](http://www.sublimetext.com/), [TextWrangler](http://www.barebones.com/products/textwrangler/) or some equivalent text editor.
 
 With Supermongo you write a script with at least one macro, for example:
 
@@ -123,13 +127,17 @@ plt.plot(x,y)
 plt.show()
 ```
 
-Then you can run it with `python script.py` or open it interactively using `python` and write `execfile("script.py")`. *Note:* In Python 3, they deprecated execfile. See my post TODO for more info.
+Then you can run it with `python script.py` or open it interactively using `python` and write `execfile("script.py")`. *Note:* In Python 3, they deprecated execfile. See my post [Execfile Lives!]({filename}blog/programming/2014/10/execfile-lives.html) for more info.
+
+<br/>
+<br/>
+<br/>
 
 ------------------------------------------------------
 
 ## Comparisons of Supermongo and Python Plotting ##
 
-Plotting libraries implement functions to display views of data. One of the basic views is comparing one data parameter (say X) against another (say Y) and just plotting the intersecting points. Aka a scatter plot. In this section, I make direct comparisons of Supermongo to Python plotting methods. 
+Plotting libraries implement functions to display views of data. One of the basic views is comparing one data parameter (say X) against another (say Y) and just plotting the intersecting points (a.k.a. a scatter plot). In this section, I make direct comparisons of Supermongo to Python plotting methods. 
 
 ### Adding items to plots ###
 
@@ -138,58 +146,51 @@ Both plotting packages create some plot axes which you can then add views of you
 
 Both plotting packages have methods for adding XY data as lines, points, and with errorbars. Below is the side by side comparison. 
 
-+----------------+------------------+--------------------------------------+
-|      Task      |    Supermongo    |                Python                |
-+================+==================+======================================+
-| Plot Lines     | ```supermongo    | ```python                            |
-|                | connect x y      | plt.plot(x,y)                        |
-|                | ```              | ```                                  |
-+----------------+------------------+--------------------------------------+
-| Plot Line      | ```supermongo    | ```python                            |
-|                | line x1 y1 x2 y2 | plt.plot([x1,x2],[y1,y2])            |
-|                | ```              | ```                                  |
-+----------------+------------------+--------------------------------------+
-| Plot Line      | ```supermongo    | ```python                            |
-|                | relocate x1 y1   | plt.plot([x1,x2],[y1,y2])            |
-|                | draw x2 y2       |                                      |
-|                | ```              | ```                                  |
-+----------------+------------------+--------------------------------------+
-| Plot Points    | ```supermongo    | ```python                            |
-|                | points x y       | plt.scatter(x,y)                     |
-|                |                  | # or use                             |
-|                |                  | plt.plot(x,y,linestyle='none')       |
-|                | ```              | ```                                  |
-+----------------+------------------+--------------------------------------+
-| Plot Errorbars | ```supermongo    | ```python                            |
-|                | errory x y yerr  | plt.errorbar(x,y,yerr=yerr)          |
-|                | errorx x y xerr  | plt.errorbar(x,y,xerr=xerr)          |
-|                |                  | plt.errobar(x,y,xerr=xerr,yerr=yerr) |
-|                | ```              | ```                                  |
-+----------------+------------------+--------------------------------------+
 
-+-----------------+---------------+----------------+
-|       Task      |   Supermongo  |     Python     |
-+=================+===============+================+
-| Horizontal Line | ```supermongo | ```python      |
-|                 | hzline y      | plt.axhline(y) |
-|                 | ```           | ```            |
-+-----------------+---------------+----------------+
-| Vertical Line   | ```supermongo | ```python      |
-|                 | vtline x      | plt.axvline(x) |
-|                 | ```           | ```            |
-+-----------------+---------------+----------------+
-
-+-----------+----------------+--------------------------------------------+
-|    Task   |   Supermongo   |                   Python                   |
-+===========+================+============================================+
-| Rectangle | ```supermongo  | ```python                                  |
-|           | relocate x1 y1 | rec = plt.Rectangle(x1,y1,(x2-x1),(y2-y1)) |
-|           | draw x1 y2     | plt.gca().add_patch(rec)                   |
-|           | draw x2 y2     |                                            |
-|           | draw x2 y1     |                                            |
-|           | draw x1 y1     |                                            |
-|           | ```            | ```                                        |
-+-----------+----------------+--------------------------------------------+
++-------------+------------------+--------------------------------------------+
+|     Task    |    Supermongo    |                   Python                   |
++=============+==================+============================================+
+| Plot lines  | ```supermongo    | ```python                                  |
+|             | connect x y      | plt.plot(x,y)                              |
+|             | ```              | ```                                        |
++-------------+------------------+--------------------------------------------+
+| Plot line   | ```supermongo    | ```python                                  |
+|             | line x1 y1 x2 y2 | plt.plot([x1,x2],[y1,y2])                  |
+|             | ```              | ```                                        |
++-------------+------------------+--------------------------------------------+
+| Plot line   | ```supermongo    | ```python                                  |
+|             | relocate x1 y1   | plt.plot([x1,x2],[y1,y2])                  |
+|             | draw x2 y2       |                                            |
+|             | ```              | ```                                        |
++-------------+------------------+--------------------------------------------+
+| Plot points | ```supermongo    | ```python                                  |
+|             | points x y       | plt.scatter(x,y)                           |
+|             |                  | # or use                                   |
+|             |                  | plt.plot(x,y,linestyle='none')             |
+|             | ```              | ```                                        |
++-------------+------------------+--------------------------------------------+
+| Error bars  | ```supermongo    | ```python                                  |
+|             | errory x y yerr  | plt.errorbar(x,y,yerr=yerr)                |
+|             | errorx x y xerr  | plt.errorbar(x,y,xerr=xerr)                |
+|             |                  | plt.errobar(x,y,xerr=xerr,yerr=yerr)       |
+|             | ```              | ```                                        |
++-------------+------------------+--------------------------------------------+
+| Horizontal  | ```supermongo    | ```python                                  |
+| Line        | hzline y         | plt.axhline(y)                             |
+|             | ```              | ```                                        |
++-------------+------------------+--------------------------------------------+
+| Vertical    | ```supermongo    | ```python                                  |
+| Line        | vtline x         | plt.axvline(x)                             |
+|             | ```              | ```                                        |
++-------------+------------------+--------------------------------------------+
+| Rectangle   | ```supermongo    | ```python                                  |
+|             | relocate x1 y1   | rec = plt.Rectangle(x1,y1,(x2-x1),(y2-y1)) |
+|             | draw x1 y2       | plt.gca().add_patch(rec)                   |
+|             | draw x2 y2       |                                            |
+|             | draw x2 y1       |                                            |
+|             | draw x1 y1       |                                            |
+|             | ```              | ```                                        |
++-------------+------------------+--------------------------------------------+
 
 
 +-----------+-------------------------+------------------------------------+
@@ -292,44 +293,39 @@ You can find out about all the keywords by typing `help(plt.scatter)` in the Pyt
 
 Alright, here comes the one to one of common styles you'll want to manipulate. The Python answers I'm going to use the most common function; Note though, Matplotlib has some inconsistencies with names and so you should refer to the internet or help if you run into problems in your own implementation.
 
-+-------------+---------------+------------------------------+
-|     Task    |   Supermongo  |            Python            |
-+=============+===============+==============================+
-| Point Color | ```supermongo | ```python                    |
-|             | ctype red     | plt.scatter(x,y,c='r')       |
-|             | points x y    | # hex colors work            |
-|             |               | plt.scatter(x,y,c='#DC322F') |
-|             | ```           | ```                          |
-+-------------+---------------+------------------------------+
-| Point Style | ```supermongo | ```python                    |
-|             | ptype 10 3    | plt.scatter(x,y,marker='o')  |
-|             | ```           | ```                          |
-+-------------+---------------+------------------------------+
-| Point Size  | ```supermongo | ```python                    |
-|             | expand 1.5    | plt.scatter(x,y,s=100)       |
-|             | ```           | ```                          |
-+-------------+---------------+------------------------------+
-
-
-+------------+---------------+-------------------------------+
-|    Task    |   Supermongo  |             Python            |
-+============+===============+===============================+
-| Line Color | ```supermongo | ```python                     |
-|            | ctype red     | plt.plot(x,y,color='r')       |
-|            | connect x y   | # hex colors work             |
-|            |               | plt.plot(x,y,color='#DC322F') |
-|            | ```           | ```                           |
-+------------+---------------+-------------------------------+
-| Line Style | ```supermongo | ```python                     |
-|            | ltype 2       | plt.plot(x,y,linestyle='--')  |
-|            | connect x y   | # or the shortcut             |
-|            |               | plt.plot(x,y,ls='--')         |
-|            | ```           | ```                           |
-+------------+---------------+-------------------------------+
-| Line Width | ```supermongo | ```python                     |
-|            | lw 7          | plt.plot(x,y,lw=7)            |
-|            | ```           | ```                           |
-+------------+---------------+-------------------------------+
++-------------+---------------+-------------------------------+
+|     Task    |   Supermongo  |             Python            |
++=============+===============+===============================+
+| Point Color | ```supermongo | ```python                     |
+|             | ctype red     | plt.scatter(x,y,c='r')        |
+|             | points x y    | # hex colors work             |
+|             |               | plt.scatter(x,y,c='#DC322F')  |
+|             | ```           | ```                           |
++-------------+---------------+-------------------------------+
+| Point Style | ```supermongo | ```python                     |
+|             | ptype 10 3    | plt.scatter(x,y,marker='o')   |
+|             | ```           | ```                           |
++-------------+---------------+-------------------------------+
+| Point Size  | ```supermongo | ```python                     |
+|             | expand 1.5    | plt.scatter(x,y,s=100)        |
+|             | ```           | ```                           |
++-------------+---------------+-------------------------------+
+| Line Color  | ```supermongo | ```python                     |
+|             | ctype red     | plt.plot(x,y,color='r')       |
+|             | connect x y   | # hex colors work             |
+|             |               | plt.plot(x,y,color='#DC322F') |
+|             | ```           | ```                           |
++-------------+---------------+-------------------------------+
+| Line Style  | ```supermongo | ```python                     |
+|             | ltype 2       | plt.plot(x,y,linestyle='--')  |
+|             | connect x y   | # or the shortcut             |
+|             |               | plt.plot(x,y,ls='--')         |
+|             | ```           | ```                           |
++-------------+---------------+-------------------------------+
+| Line Width  | ```supermongo | ```python                     |
+|             | lw 7          | plt.plot(x,y,lw=7)            |
+|             | ```           | ```                           |
++-------------+---------------+-------------------------------+
 
 #### More with Matplotlib ####
 
@@ -370,12 +366,20 @@ It's important to talk about the figure. In Supermongo you only ever have one fi
 |                 | window 2 2 1 2 | ax = fig.add_subplot(2,2,4) |
 |                 | ```            | ```                         |
 +-----------------+----------------+-----------------------------+
-__Note:__ For Python, storing the variable in this example is unnecessary.
 
+__Note:__ For Python, storing the plot in `ax` is not necessary but it's a best practice to use matplotlib objects. 
 
-For multipanel plots Supermongo uses the `window` command with arguments \[*number of columns*\] \[*number of rows*\] \[*x-index*\] \[*y-index*\]. `window 2 2 1 2` indicates 2 rows 2 columns and the current plot is the bottom-right.
+<!-- TODO: add  -->
 
-In Matplotlib there are several ways to accomplish this (add_subplot,plt.subplots,gridspec). I commonly create a figure `fig = plt.figure()` and add a subplot `ax = fig.add_subplot(1,1,1)`. The arguments are \[*number of rows*\] \[*number of columns*\] \[*current plot*\]. The current plot number starts counting at 1 from the top-left then continues as though you were reading English from left to right, top to bottom. To get the bottom right plot from the Supermongo example I would use `ax = fig.add_subplot(2,2,4)`.
+<br/>
+
+For multipanel plots Supermongo uses the `window` command with arguments __\[*number of columns*\] \[*number of rows*\] \[*x-index*\] \[*y-index*\]__. `window 2 2 1 2` indicates 2 rows 2 columns and the current plot is the bottom-right.
+
+<br/>
+
+In Matplotlib there are several ways to accomplish this (add_subplot,plt.subplots,gridspec). I commonly create a figure `fig = plt.figure()` and add a subplot `ax = fig.add_subplot(1,1,1)`. The arguments are __\[*number of rows*\] \[*number of columns*\] \[*current plot*\]__. The current plot number starts counting at 1 from the top-left then continues as though you were reading English from left to right, top to bottom. To get the bottom right plot from the Supermongo example I would use `ax = fig.add_subplot(2,2,4)`.
+
+<br/>
 
 Matplotlib has many ways to easily manipulate multipanel figures. Check out this [Demo of multiple subplots](http://matplotlib.org/examples/pylab_examples/subplots_demo.html).
 
@@ -394,17 +398,72 @@ Matplotlib has many ways to easily manipulate multipanel figures. Check out this
 |             | ```                        | ```                             |
 +-------------+----------------------------+---------------------------------+
 
-### Axes ###
-
 ### Saving plots to file ###
+
+Saving in Supermongo requires setting up a state to put the plot into. The following example from [Annika Peter](http://www.astro.caltech.edu/~apeter/sm/basic.html) shows how to set up the device then save to file (the last `hardcopy` is critical, you can also use `dev x11` to close).
+
+```supermongo
+dev postencap my_first_plot.eps
+ctype black
+set x=0.0,10.0,1.0
+set y=x**2
+lim x y
+box
+con x y
+ptype 10 3
+points x y
+xlabel x
+ylabel y
+hardcopy
+```
+
+Matplotlib does not require you to set anything up prior to building the items. Instead, you can just save out the state or figure with a command. The following example mimics the Supermongo example. 
+
+```python
+import matplotlib.pylab as plt
+import numpy as np
+x = np.arange(0.0,10.0,1.0)
+y = x**2
+fig,ax = plt.subplots()
+ax.plot(x,y,marker='o')
+ax.set_xlabel("x")
+ax.set_ylabel("y")
+fig.savefig("my_first_plot.ps")
+```
+
+__Note:__ Matplotlib is smart about it's saving methods. If you want to create a pdf not ps you just use the ".pdf" extension and it will save to that format. Many other formats are supported (e.g. png, pdf, jpg, gif, etc)
+
+<br/>
+<br/>
+<br/>
+
+
+# Could publish the programming section later # {style="font-size:40px;font-weight:bold"}
 
 ----------------------------------------------------
 
 ## Programming ##
 
+Supermongo was developed to be plotting language. However, within it's syntax you can specify any programming task which makes it more or less a complete language. However, you should avoid using SuperMongo for more than plots as much as possible. Other programming languages have much better implementations allowing you to write your code faster, debug easier, and for it to run more efficiently. 
+
+For example, Python is a complete language which has good implementations of many programming concepts. It's a language not just for plotting but 
+
 ### Reading in Data ###
 
 ### Syntax ###
+
+### Programming Actions ###
+
+define x 1 | x = 1
+
+set x = {1,2,3} | x = [1,2,3]
+
+set x = {1,2,3} | x = np.array([1,2,3])
+
+set x = 0,10,1 | x = np.arange(0,10,1)
+set x = 0,10,1 | x = list(range(0,10,1))
+
+
 
 ### Control Structures ###
 
@@ -422,6 +481,7 @@ __if statement__
 +-----------------+-----------------+
 
 __if,elseif,else statement__
+
 ```supermongo
 if('Robert' == 'Patricia') {
    echo Something's wrong
@@ -431,6 +491,7 @@ if('Robert' == 'Patricia') {
    echo Go Yankees
 }}
 ```
+
 ```python
 if 'Robert' == 'Patricia':
     print("Something's wrong")
@@ -456,8 +517,8 @@ else:
 +--------------+-----------------+-----------------+
 
 
-
 ## Shout Outs ##
+
 Acknowledgments go to Robert Lupton and Patricia Monger for creating [SM](http://www.astro.princeton.edu/~rhl/sm/) which really was revolutionary for it's time. Special thanks to [Annika Peter](http://www.astro.caltech.edu/~apeter/sm/basic.html), [Craig Rudick](http://astroweb.astr.cwru.edu/craig/sm/plot_sm.html) and [Rebecca Stanek](http://www.rebeccastanek.com/super/) for their Supermongo guides. They helped me immensely when I learned Supermongo and in writing this guide.
 
 

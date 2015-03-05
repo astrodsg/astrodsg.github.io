@@ -22,6 +22,27 @@ table td {
     background-color: #ffffff;
 }
 
-table pre {
-    word-wrap: break-word;    
+pre code {
+    word-break: break-word;
+    word-wrap: break-word;
+    font-weight: initial;
 }
+
+pre.supermongo {
+    background-color: #FFF5DB;
+}
+
+pre.python {
+    background-color: #DBFFF8;
+}
+
+table tr td:first-child {
+    font-weight: normal;
+    font-size: 20px;
+}
+
+h1,h2,h3,h4 {
+    margin-top:40px;
+}
+
+
