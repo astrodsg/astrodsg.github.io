@@ -10,10 +10,16 @@ DATE: Wed Oct 29 11:03:40 2014
 # import modules 
 
 from __future__ import print_function, division, unicode_literals
-import os 
+import os
+import sys 
 import io
 import datetime 
 import time
+
+PY3 = sys.version_info.major == 3
+
+if not PY3:
+    input = raw_input
 
 # ########################################################################### #
 boiler = """title: {title}
@@ -30,6 +36,9 @@ summary:
 content
 
 """
+
+
+
 
 title = input("title: ").replace(" ","-")
 now = datetime.datetime.now()
