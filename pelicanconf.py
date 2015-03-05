@@ -81,6 +81,9 @@ PANDOC_EXTENSIONS = [\
     '+grid_tables',
     '+raw_html',
     '+markdown_in_html_blocks',
+    '+fenced_code_attributes',
+    '+inline_code_attributes',
+    '+header_attributes',
     ]
 
 # below is the dir for the 'include_code' plugin
@@ -95,10 +98,8 @@ PROJECT_ABSPATH = os.path.abspath(os.path.dirname(__file__))
 projectp = lambda fn : os.path.join(PROJECT_ABSPATH,fn)
 
 # ----------------------- 
-
-OUTPUT_PATH = 'output'
 PATH = 'content'
-
+OUTPUT_PATH = 'output'
 STATIC_PATHS = [\
     'README.md',
     'extra/icons',
